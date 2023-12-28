@@ -1,0 +1,29 @@
+{%  extends 'base.html' %}
+{% block content %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Posts</title>
+</head>
+<body>
+
+<h1>Latest Posts</h1>
+
+<ul>
+    {% for post in object_list %}
+        <li>
+            <a href="{% url 'article-detail' post.pk %}">
+                {{ post.title }}
+            </a> - {{ post.author.first_name }} {{ post.author.last_name }}<br/>
+            {{ post.body }}
+        </li>
+    {% endfor %}
+</ul>
+
+</body>
+</html>
+
+{% endblock %}
