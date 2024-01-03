@@ -1,11 +1,11 @@
 {% extends 'base.html' %}
 
-{% block title %}Add Post{% endblock %}
+{% block title %}Add Category{% endblock %}
 
 
 {% block content %}
 {% if user.is_authenticated %}
-<h2>Add New Post</h2>
+<h2>Add New Category</h2>
 <form method="post">
     {% csrf_token %}
 
@@ -13,7 +13,7 @@
     <form method="POST">
         {% csrf_token %}
         {{ form.as_p }}
-        <button>Post</button>
+        <button>Add Category</button>
     </form>
 </div>
 
