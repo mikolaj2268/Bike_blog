@@ -3,6 +3,9 @@ from django.views.generic import ListView, DetailView, CreateView, UpdateView, D
 from .models import Post, Category, Comment
 from .forms import PostForm, EditForm, CommentForm
 from django.urls import reverse_lazy
+import xml.etree.ElementTree as ET
+from django.http import HttpResponse
+import pandas as pd
 
 # def home(request):
 #     return render(request, 'home.html', {})
@@ -61,3 +64,44 @@ class DeletePostView(DeleteView):
     model = Post
     template_name = 'delete_post.html'
     success_url = reverse_lazy('home')
+
+def export_posts_to_xml(request):
+    posts = Post.objects.all()  # Fetch all blog posts
+
+    root = ET.Element("posts")
+    for post in posts:
+        post_element = ET.SubElement(root, "post")
+        ET.SubElement(post_element, "title").text = post.title
+        ET.SubElement(post_element, "body").text = post.body
+        ET.SubElement(post_element, "post_date").text = str(post.post_date)
+        ET.SubElement(post_element, "category").text = post.category
+
+        author_element = ET.SubElement(post_element, "author")
+        ET.SubElement(author_element, "username").text = post.author.username
+        ET.SubElement(author_element, "first_name").text = post.author.first_name
+        ET.SubElement(author_element, "last_name").text = post.author.last_name
+        ET.SubElement(author_element, "email").text = post.author.email
+
+    tree = ET.ElementTree(root)
+    response = HttpResponse(content_type='application/xml')
+    response['Content-Disposition'] = 'attachment; filename="posts.xml"'
+    tree.write(response, encoding='utf-8', xml_declaration=True)
+
+    return response
+
+
+def export_user_data_to_excel(request):
+    # Filter posts by logged-in user
+    user_posts = Post.objects.filter(author=request.user)
+
+    # Convert queryset to DataFrame
+    df = pd.DataFrame(list(user_posts.values("title", "body", "post_date", "category")))
+
+    # Create an Excel writer
+    response = HttpResponse(content_type='application/vnd.ms-excel')
+    response['Content-Disposition'] = 'attachment; filename="user_data.xlsx"'
+
+    with pd.ExcelWriter(response, engine='openpyxl') as writer:
+        df.to_excel(writer, index=False)
+
+    return response

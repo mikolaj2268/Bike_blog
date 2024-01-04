@@ -1,6 +1,7 @@
 from django.urls import path
 # from . import views
 from .views import HomeView, ArticleDetailView, AddPostView, UpdatePostView, DeletePostView, AddCategoryView, CategoryView, AddCommentView
+from .views import export_posts_to_xml, export_user_data_to_excel
 
 urlpatterns = [
     # path('', views.home, name="home"),
@@ -12,4 +13,6 @@ urlpatterns = [
     path('add_category/', AddCategoryView.as_view(), name = 'add_category'),
     path('category/<str:categories>',CategoryView, name = 'category'),
     path('article/<int:pk>/comment/', AddCommentView.as_view(), name = 'add_comment'),
+    path('export/xml/', export_posts_to_xml, name='export_posts_xml'),
+    path('export/excel/', export_user_data_to_excel, name='export_user_data_excel'),
 ]
