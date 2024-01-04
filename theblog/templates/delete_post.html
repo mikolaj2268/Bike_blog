@@ -5,12 +5,13 @@
 {% block content %}
 
     {% if user.is_authenticated %}
+        {% if user.id == post.author.id %}
 <h2>Delete Post</h2>
 <p>Are you sure you want to delete "{{ post.title }}"?</p>
 <form method="post">
     {% csrf_token %}
     <input type="submit" value="Delete">
 </form>
-
+{% endif %}
     {% endif %}
 {% endblock %}

@@ -11,6 +11,9 @@
     <header>
         <h1>Bike Blog</h1>
     </header>
+    {% if user.is_authenticated %}
+                <p class="user-info">Logged in as {{ user.username }}</p>
+            {% endif %}
     <nav>
         <a href="{% url 'home' %}">Home</a>
         {% if user.is_authenticated %}
