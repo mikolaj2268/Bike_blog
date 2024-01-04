@@ -78,9 +78,10 @@ textarea,
 button {
     width: 100%;
     padding: 10px;
-    margin: 10px 0;
+    margin: 15px 0;
     border-radius: 4px;
     border: 1px solid #ddd;
+    box-sizing: border-box; /* Include padding and border in the width */
 }
 
 input[type="submit"],
@@ -89,6 +90,7 @@ button {
     color: white;
     border: none;
     cursor: pointer;
+    box-sizing: border-box; /* Include padding and border in the width */
 }
 
 input[type="submit"]:hover,
@@ -96,10 +98,11 @@ button:hover {
     background-color: #003366; /* Darker Blue on Hover */
 }
 
+
 /* Responsive Styles */
 @media screen and (max-width: 768px) {
     .container, .post {
-        width: 95%;
+        width: 90%;
         margin: 10px auto;
     }
 }
