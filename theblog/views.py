@@ -45,7 +45,7 @@ class AddCommentView(CreateView):
     form_class = CommentForm
     template_name = 'add_comment.html'
     # fields = '__all__'
-    # success_url = reverse_lazy('article-detail')  # Redirect to home page or other page after post is created
+    success_url = reverse_lazy('home')  # Redirect to home page or other page after post is created
     def form_valid(self, form):
         form.instance.post_id = self.kwargs['pk']
         form.instance.name = self.request.user
