@@ -12,13 +12,27 @@ body {
     padding: 0;
 }
 
-/* Header Styles */
+/* Logo Styles */
+#logo {
+    float: left;
+  width: 130px;
+  height: 130px;
+    flex-direction: column;
+}
+
 header {
     background-color: #003366; /* Slightly Lighter Dark Blue */
+    position: relative;
     color: white;
     text-align: center;
-    padding-top: 10px;
+    padding-top: 5px;
+    display: flex; /* Use flexbox to align items */
+    flex-direction: row; /* Stack items vertically */
+    align-items: center; /* Center items horizontally */
+    justify-content: center;
+
 }
+
 
 header h1 {
     margin: 0;
@@ -29,6 +43,7 @@ nav {
     background-color: #0059b3; /* Intermediate Blue */
     padding: 10px 0;
     text-align: center;
+    margin-top: 5px;
 }
 
 nav a {
@@ -141,6 +156,7 @@ button:hover {
     font-size: 16px;
     margin-left: auto;
     margin-right: 0;
+    margin-top: 2px;
 }
 
 

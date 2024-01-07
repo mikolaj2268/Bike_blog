@@ -9,7 +9,9 @@
 </head>
 <body>
     <header>
-        <h1>Bike Blog</h1>
+        <a href="{% url 'home' %}">
+            <img src="{% static "logo2.png" %}" alt="Logo" id="logo">
+        </a>
     </header>
     {% if user.is_authenticated %}
                 <p class="user-info">Logged in as {{ user.username }}</p>

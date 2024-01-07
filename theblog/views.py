@@ -38,16 +38,25 @@ class AddPostView(CreateView):
         form.instance.author = self.request.user  # Set author as the current logged-in user
         return super(AddPostView, self).form_valid(form)
 
+
+
 class AddCommentView(CreateView):
     model = Comment
     form_class = CommentForm
     template_name = 'add_comment.html'
     # fields = '__all__'
-    success_url = reverse_lazy('home')  # Redirect to home page or other page after post is created
+    # success_url = reverse_lazy('article-detail')  # Redirect to home page or other page after post is created
     def form_valid(self, form):
         form.instance.post_id = self.kwargs['pk']
         form.instance.name = self.request.user
         return super().form_valid(form)
+
+    # def get_success_url(self):
+    #     # Get the referer URL
+    #     referer_url = self.request.META.get('HTTP_REFERER')
+    #
+    #     # If referer URL is present, use it; otherwise, fallback to a predefined page
+    #     return referer_url if referer_url else reverse_lazy('home')
 class AddCategoryView(CreateView):
     model = Category
     template_name = 'add_category.html'
