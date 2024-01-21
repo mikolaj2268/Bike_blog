@@ -3,27 +3,27 @@
 {% block title %}Home{% endblock %}
 
 {% block content %}
-<h2>Latest Posts</h2>
-{% for post in object_list %}
-    <div class="post">
-        <h3><a href="{% url 'article-detail' post.id %}">{{ post.title }} </a></h3>
-        <p><a href="{% url 'category' post.category%}">{{ post.category }} </a></p>
-        <p>Posted by {{ post.author }} on {{ post.post_date }}</p>
-        {% if user.is_authenticated %}
-            {% if user.id == post.author.id %}
-                <a href="{% url 'update_post' post.id %}" class="btn btn-primary">Edit</a>
-                <a href="{% url 'delete_post' post.id %}" class="btn btn-danger">Delete</a>
+<div class="container">
+    <h2>Latest Posts</h2>
+    {% for post in object_list %}
+        <div class="post">
+            <h3><a href="{% url 'article-detail' post.id %}">{{ post.title }}</a></h3>
+            <p><a href="{% url 'category' post.category%}">{{ post.category }}</a></p>
+            <p>Posted by {{ post.author }} on {{ post.post_date }}</p>
+            {% if user.is_authenticated %}
+                {% if user.id == post.author.id %}
+                    <div class="post-actions">
+                        <a href="{% url 'update_post' post.id %}" class="btn btn-primary">Edit</a>
+                        <a href="{% url 'delete_post' post.id %}" class="btn btn-danger">Delete</a>
+                    </div>
+                {% endif %}
             {% endif %}
-        {% endif %}
+        </div>
+    {% empty %}
+        <p>No posts available.</p>
+    {% endfor %}
+    <div class="export-buttons">
+        <a href="{% url 'export_posts_xml' %}" class="btn btn-success">Download all Posts as XML</a>
     </div>
-{% empty %}
-    <p>No posts available.</p>
-{% endfor %}
-    <a href="{% url 'export_posts_xml' %}">Download all Posts as XML</a>
-    <br/>
-{#    {% if user.is_authenticated %}#}
-{#    <a href="{% url 'export_user_data_excel' %}">Download Your Posts as Excel</a>#}
-{#    {% endif %}#}
-
+</div>
 {% endblock %}
-

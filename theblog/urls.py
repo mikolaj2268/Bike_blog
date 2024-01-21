@@ -2,6 +2,8 @@ from django.urls import path
 # from . import views
 from .views import HomeView, ArticleDetailView, AddPostView, UpdatePostView, DeletePostView, AddCategoryView, CategoryView, AddCommentView
 from .views import export_posts_to_xml, export_user_data_to_excel
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     # path('', views.home, name="home"),
@@ -15,4 +17,4 @@ urlpatterns = [
     path('article/<int:pk>/comment/', AddCommentView.as_view(), name = 'add_comment'),
     path('export/xml/', export_posts_to_xml, name='export_posts_xml'),
     path('export/excel/', export_user_data_to_excel, name='export_user_data_excel'),
-]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -3,26 +3,25 @@
 {% block title %}Categories{% endblock %}
 
 {% block content %}
-<h2>{{ categories }}</h2>
-{% if category_posts %}
-
-
-    {% for post in category_posts %}
-    <div class="post">
-        <h3><a href="{% url 'article-detail' post.id %}">{{ post.title }} </a></h3>
-
-        <p>Posted by {{ post.author }} on {{ post.post_date }}</p>
-        {% if user.is_authenticated %}
-            <a href="{% url 'update_post' post.id %}" class="btn btn-primary">Edit</a>
-            <a href="{% url 'delete_post' post.id %}" class="btn btn-danger">Delete</a>
-        {% endif %}
-    </div>
-    {% empty %}
-        <p>No posts available.</p>
-{% endfor %}
-
-{% else %}
-No posts in this category
-{% endif %}
+<div class="container">
+    <h2>Categories</h2>
+    {% if category_posts %}
+        <div class="category-posts">
+            {% for post in category_posts %}
+                <div class="post">
+                    <h3><a href="{% url 'article-detail' post.id %}">{{ post.title }}</a></h3>
+                    <p>Posted by {{ post.author }} on {{ post.post_date }}</p>
+                    {% if user.is_authenticated %}
+                        <div class="post-actions">
+                            <a href="{% url 'update_post' post.id %}" class="btn btn-primary">Edit</a>
+                            <a href="{% url 'delete_post' post.id %}" class="btn btn-danger">Delete</a>
+                        </div>
+                    {% endif %}
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p>No posts in this category</p>
+    {% endif %}
+</div>
 {% endblock %}
-

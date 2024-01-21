@@ -1,8 +1,5 @@
-/* General Styles */
-/* General Styles */
 body {
     font-family: 'Arial', sans-serif;
-    /*background-image: url('background.jpg'); !* Path to the background image *!*/
     background-color: #003366; /* Dark Blue Background, used if the image is unavailable */
     background-size: cover; /* Ensures the background covers the entire body */
     background-position: center; /* Centers the background image */
@@ -12,11 +9,10 @@ body {
     padding: 0;
 }
 
-/* Logo Styles */
 #logo {
     float: left;
-  width: 130px;
-  height: 130px;
+    width: 130px;
+    height: 130px;
     flex-direction: column;
 }
 
@@ -30,15 +26,12 @@ header {
     flex-direction: row; /* Stack items vertically */
     align-items: center; /* Center items horizontally */
     justify-content: center;
-
 }
-
 
 header h1 {
     margin: 0;
 }
 
-/* Navigation Menu */
 nav {
     background-color: #0059b3; /* Intermediate Blue */
     padding: 10px 0;
@@ -54,37 +47,33 @@ nav a {
 }
 
 nav a:hover {
-    color: orangered; /* Yellow on hover */
+    color: orangered;
 }
 
-/* Main Content Container */
 .container {
     width: 80%;
     margin: 20px auto;
-    background-color: #f0faff; /* Very Light Blue */
+    background-color: #f0faff;
     padding: 15px;
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 
-/* Blog Post Frame */
 .post {
-    background-color: #f0faff; /* Very Light Blue for Post Background */
-    border: 1px solid #ddd; /* Light border for posts */
+    background-color: #f0faff;
+    border: 1px solid #ddd;
     margin-bottom: 20px;
     padding: 15px;
     border-radius: 5px;
 }
 
-/* Footer */
 footer {
-    background-color: #0059b3; /* Footer matching nav */
+    background-color: #0059b3;
     color: white;
     text-align: center;
     padding: 10px 0;
     margin-top: 20px;
 }
 
-/* Form Styles */
 input[type="text"],
 input[type="password"],
 input[type="email"],
@@ -113,8 +102,6 @@ button:hover {
     background-color: #003366; /* Darker Blue on Hover */
 }
 
-
-/* Responsive Styles */
 @media screen and (max-width: 768px) {
     .container, .post {
         width: 90%;
@@ -128,7 +115,7 @@ button:hover {
 }
 
 .post p a:hover {
-    color: orangered; /* Yellow on hover */
+    color: orangered;
     text-decoration: underline; /* Underline on hover */
 }
 
@@ -138,18 +125,10 @@ button:hover {
 }
 
 .post h3 a:hover {
-    color: orangered; /* Yellow on hover */
+    color: orangered;
     text-decoration: underline; /* Underline on hover */
 }
 
-/*!* Header Content Styles *!*/
-/*.header-content {*/
-
-/*    align-items: center;*/
-/*    padding: 0 10px;*/
-/*}*/
-
-/* User Information Styles */
 .user-info {
     background-color: #003366;
     color: white;
@@ -158,10 +137,3 @@ button:hover {
     margin-right: 0;
     margin-top: 2px;
 }
-
-
-
-/*!* Logout Form Styles *!*/
-/*.logout-form {*/
-/*    display: inline; !* To align the logout button with the links *!*/
-/*}*/
