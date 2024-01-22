@@ -17,9 +17,7 @@ class HomeView(ListView):
     ordering = ['-post_date']
     # ordering = ['-id']
 
-def CategoryView(request, categories):
-    category_posts = Post.objects.filter(category = categories)
-    return render(request, 'categories.html', {'categories':categories.title(), 'category_posts':category_posts})
+
 
 
 
@@ -51,12 +49,6 @@ class AddCommentView(CreateView):
         form.instance.name = self.request.user
         return super().form_valid(form)
 
-    # def get_success_url(self):
-    #     # Get the referer URL
-    #     referer_url = self.request.META.get('HTTP_REFERER')
-    #
-    #     # If referer URL is present, use it; otherwise, fallback to a predefined page
-    #     return referer_url if referer_url else reverse_lazy('home')
 class AddCategoryView(CreateView):
     model = Category
     template_name = 'add_category.html'
@@ -73,6 +65,11 @@ class DeletePostView(DeleteView):
     model = Post
     template_name = 'delete_post.html'
     success_url = reverse_lazy('home')
+
+
+def CategoryView(request, categories):
+    category_posts = Post.objects.filter(category = categories)
+    return render(request, 'categories.html', {'categories':categories.title(), 'category_posts':category_posts})
 
 def export_posts_to_xml(request):
     posts = Post.objects.all()  # Fetch all blog posts
